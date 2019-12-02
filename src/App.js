@@ -32,7 +32,7 @@ class App extends React.Component {
       ],
       todo: ''
     };
-  } //end of state 
+  } //end of state constructor
 
   /**
    * implicitly bind `this` to `addTodo` with ES6 arrow function
@@ -45,7 +45,7 @@ class App extends React.Component {
     //accessor
     const newTodo = {
       task: this.state.todo,
-      complete: false;
+      completed: false,
       id: Date.now() //ok to use on small apps. please do research for larger ones. unsure atm =/ 
     }
     //appending state using spread operator  
@@ -54,7 +54,7 @@ class App extends React.Component {
       todos: [...this.state.todos, newTodo],
       todo: ''
     });
-  };
+  };//end of addTodo
 
   /**
    * onChangeHandler component 
@@ -65,8 +65,25 @@ class App extends React.Component {
   }
 
   /**
-   * 
+   * toggleHandler component
+   * using if-logic to check if todo.id's match 
+   * mutable variable: use `let` and `slice()` to remove an item 
    */
+  toggleHandler = id => {
+    //let used for mutability purposes
+    let todos = this.state.todo.slice();
+    todos= todos.map(todo => {
+      if(todo.id === id)
+      {
+        todo.completed = !todo.completed;
+      }
+      else
+      {
+        return todo;
+      }
+    });
+    this.setState( { todos });
+  };//end of toggleHandler
 
 
 
@@ -78,7 +95,10 @@ class App extends React.Component {
         <TodoForm
           value={this.state.todo}
           onChangeHandler={this.onChangeHandler}
-
+        />
+        <TodoList 
+          toggleComplete={this.toggleHandler}
+          todos={this.state.todos}
         />
       </div>
     );
