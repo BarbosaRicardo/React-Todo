@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button, ButtonGroup, } from 'react-bootstrap';
 
 /**
  * creating TodoForm function and passing props to allow handlers to 
@@ -7,6 +8,7 @@ import React from 'react'
 const TodoForm = props => {
    return (
       <form>
+         <label>
          <input
             // Input specs:
             // type, name, value(via props), placeholder, onChange
@@ -16,11 +18,15 @@ const TodoForm = props => {
             placeholder="...todo"
             onChange={props.onChangeHandler}
          />
-         <button onClick={props.addTodoHandler}>Add To-do Item</button>
-         <button onClick={props.clearTodoHandler}>Clear Finished Items</button>
+         </label>
+      <ButtonGroup className="mr-2">
+         <Button variant="primary" onClick={props.addTodoHandler}>Add To-do Item</Button>
+         <Button variant ="danger" onClick={props.clearTodoHandler}>Clear Finished Items</Button>
+      </ButtonGroup>
+         
 
       </form>
    )
 };
 
-export default TodoForm
+export default TodoForm;

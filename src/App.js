@@ -1,4 +1,6 @@
 import React from 'react'  
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 //imported components from src/components
 import TodoList from './components/TodoComponents/TodoList.js'  
@@ -102,6 +104,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+      <h1>Welcome to your Todo List!</h1>
+      <h2>Never Give Up!!</h2>
         <TodoForm
           value={this.state.todo}
           onChangeHandler={this.onChangeHandler}
