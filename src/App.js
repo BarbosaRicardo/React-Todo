@@ -56,11 +56,29 @@ class App extends React.Component {
     });
   };
 
+  /**
+   * onChangeHandler component 
+   * allows the name of the input to be the value 
+   */
+  onChangeHandler = event => {
+    this.setState( {[event.target.name]: event.target.value } );
+  }
+
+  /**
+   * 
+   */
+
+
+
+
+
   render() {
     return (
       <div className="App">
         <TodoForm
           value={this.state.todo}
+          onChangeHandler={this.onChangeHandler}
+
         />
       </div>
     );
