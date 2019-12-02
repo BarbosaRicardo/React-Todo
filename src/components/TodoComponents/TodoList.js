@@ -10,12 +10,12 @@ import Todo from './Todo.js'
       <div>
          {props.todos.map(todo => (
             <Todo 
-               toggleComplete={props.toggleComplete}
+               toggleHandler={props.toggleHandler}
                key={todo.id}
                todo={todo}
             />
 
-         ))};
+         ))}
 
       </div>
    )

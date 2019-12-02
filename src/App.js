@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'  
 
 //imported components from src/components
-import TodoList from './components/TodoComponents/TodoList.js';
-import TodoForm from './components/TodoComponents/TodoForm.js';
+import TodoList from './components/TodoComponents/TodoList.js'  
+import TodoForm from './components/TodoComponents/TodoForm.js'  
 
 
 class App extends React.Component {
@@ -14,7 +14,7 @@ class App extends React.Component {
   //step1: call the constructor and super() method to allow methods from React's Component 
   //constructor class to be passed down into App (the derived or 'child' class)
   constructor () {
-    super();
+    super()  
     
     /** 
      * state for Todo. Recall that 'this' must be called since one is working
@@ -32,7 +32,7 @@ class App extends React.Component {
       ],
       todo: ''
     };
-  } //end of state constructor
+  }; //end of state constructor
 
   /**
    * implicitly bind `this` to `addTodo` with ES6 arrow function
@@ -40,7 +40,7 @@ class App extends React.Component {
    */
   addTodo = event => {
     //prevents re-render of screen 
-    event.preventDefault();
+    event.preventDefault()  
 
     //accessor
     const newTodo = {
@@ -53,16 +53,16 @@ class App extends React.Component {
       //applying spread operator to avoid mutability 
       todos: [...this.state.todos, newTodo],
       todo: ''
-    });
-  };//end of addTodo
+    })  
+  }; //end of addTodo
 
   /**
    * onChangeHandler component 
    * allows the name of the input to be the value 
    */
   onChangeHandler = event => {
-    this.setState( {[event.target.name]: event.target.value } );
-  }
+    this.setState( {[event.target.name]: event.target.value } )  
+  }; //end of onChangeHandler
 
   /**
    * toggleHandler component
@@ -70,39 +70,53 @@ class App extends React.Component {
    * mutable variable: use `let` and `slice()` to remove an item 
    */
   toggleHandler = id => {
-    //let used for mutability purposes
-    let todos = this.state.todo.slice();
-    todos= todos.map(todo => {
+    //`let` used for mutability purposes
+    let todos = this.state.todos.slice()  
+    // eslint-disable-next-line array-callback-return
+    todos = todos.map(todo => {
       if(todo.id === id)
       {
-        todo.completed = !todo.completed;
+        todo.completed = !todo.completed  
+        return todo  
       }
       else
       {
-        return todo;
+        return todo  
       }
-    });
-    this.setState( { todos });
-  };//end of toggleHandler
+    })  
+    this.setState( { todos })  
+  }  //end of toggleHandler
 
+  /**
+   * clearTodo instance object
+   */
+  clearTodo = event => {
+    event.preventDefault()  
+    let todos= this.state.todos.filter(todo => !todo.completed)  
+    this.setState( { todos })  
+  }   //end of clearTodo
 
-
-
-
+  /**
+   * render() called 
+   */
   render() {
     return (
       <div className="App">
         <TodoForm
           value={this.state.todo}
           onChangeHandler={this.onChangeHandler}
+          addTodoHandler={this.addTodo}
+          clearTodoHandler={this.clearTodo}
+
         />
         <TodoList 
-          toggleComplete={this.toggleHandler}
+          toggleHandler={this.toggleHandler}
           todos={this.state.todos}
         />
       </div>
-    );
-  }
-}
+    )  
+  };// end of render()
 
-export default App;
+}; //end of App
+
+export default App  

@@ -8,12 +8,12 @@ const Todo = props => {
             {textDecoration: 'line-through'}
             : null}
 
-            onClick={() => props.toggleComplete(props.todo.id)} >
+            onClick={ () => props.toggleHandler(props.todo.id)} >
 
          {props.todo.task}
 
       </div>
-   )
-}
+   );
+};
 
 export default Todo;

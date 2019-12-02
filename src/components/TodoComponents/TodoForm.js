@@ -13,11 +13,14 @@ const TodoForm = props => {
             type="text"
             name="todo"
             value={props.value}
-            placeholder="let's  begin the workflow! ...todo"
+            placeholder="...todo"
             onChange={props.onChangeHandler}
          />
+         <button onClick={props.addTodoHandler}>Add To-do Item</button>
+         <button onClick={props.clearTodoHandler}>Clear Finished Items</button>
+
       </form>
    )
 };
 
-export default TodoForm;
+export default TodoForm
